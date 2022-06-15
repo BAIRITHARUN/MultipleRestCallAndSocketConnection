@@ -36,6 +36,7 @@ public class ReactNativeFlipper {
       client.addPlugin(new SharedPreferencesFlipperPlugin(context));
       client.addPlugin(CrashReporterPlugin.getInstance());
 
+//       Comment below to interact with Serber Sent events
       NetworkFlipperPlugin networkFlipperPlugin = new NetworkFlipperPlugin();
       NetworkingModule.setCustomClientBuilder(
           new NetworkingModule.CustomClientBuilder() {
