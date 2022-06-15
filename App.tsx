@@ -5,6 +5,8 @@ import {
   Text, View
 } from 'react-native';
 
+import EventSource from 'react-native-sse';
+
 var axios = require('axios');
 
 const App: FC = () => {
@@ -14,6 +16,8 @@ const App: FC = () => {
   const [appTime, setAppTime] = useState('')
 
   const [count, setCount] = useState('')
+  
+  const [listening, setListening] = useState(false);
 
   let startApicalls: any
 
@@ -79,7 +83,52 @@ const App: FC = () => {
       console.log("Count", cnt);
     };
   }
+  
+  /* un comment use effect to interact with SSE*/
+  
+    // useEffect(() => {
+  //   if (!listening) {
+  
+  //     const es = new EventSource<MyCustomEvents>(
+  //       "http://192.168.0.111:3001/events"
+  //     );
 
+  //     es.addEventListener("open", (event) => {
+  //       console.log("Open SSE connection.");
+  //     });
+
+  //     es.addEventListener("message", (event: any) => {
+  //       let res = JSON.parse(event.data)
+  //       let cnt = res.count
+
+  //       let dd = new Date(res.time)
+
+  //       setResTime(dd.toLocaleString())
+  //       console.log("Response Time", dd.toLocaleString())
+
+  //       setCount(cnt)
+  //       console.log("Count", cnt);
+  //     })
+
+  //     es.addEventListener("ping", (event: any) => {
+  //       console.log("Received ping with data:", event.data);
+  //     });
+
+  //     es.addEventListener("clientConnected", (event: any) => {
+  //       console.log("Client connected:", event.data);
+  //     });
+
+  //     es.addEventListener("clientDisconnected", (event: any) => {
+  //       console.log("Client disconnected:", event.data);
+  //     });
+
+
+  //     setListening(true);
+  //   }
+  // }, [listening]);
+
+  
+  /* un comment use effect to interact with Web Socket*/
   // useEffect(()=> {
     
   //   connectWS()
@@ -88,6 +137,8 @@ const App: FC = () => {
   //     ws.close();
   //   })
   // }, [])
+  
+  /* un comment use effect to make multiple API calls*/
 
   // useEffect(() => {
   //   startApicalls = setInterval(() => {
